@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    min-height: 100vh;
+    gap: 2rem;
+}
+#bar{
+    flex: 0 0 280px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+}
+#upload-container{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+.upload-box{
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    border: 2px dashed #CBD5E1;
+    border-radius: 12px;
+    background-color: white;
+    text-align: center;
+}
+.upload-box.dragover{
+    border-color: #3B82F6;
+    background-color: #F8FAFC;
+}
+.upload-box label.select-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #3B82F6;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 1.5rem 0;
+}
+.upload-box label.select-btn:hover{
+    background-color: #2563EB;
+    transform: translateY(-1px);
+}
+.upload-box textarea{
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+}
+.upload-box textarea:focus{
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+.upload-box button{
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+.upload-box button:hover{
+    background-color: #2563EB;
+    transform: translateY(-1px);
+}
+#file-name {
+    color: #64748B;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+input[type="file"]{
+    display: none;
+}
+@media (max-width:768px){
+    body{
+        flex-direction: column;
+    }
+    #bar{
+        flex: 0 0 auto;
+        width: 100%;
+        box-shadow: none;
+        border-bottom: 1px solid #E2E8F0;
+    }
+    #upload-container{
+        padding: 1rem;
+        min-height: calc(100vh - 200px);
+    }
+}
