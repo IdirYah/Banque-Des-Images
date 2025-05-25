@@ -1,3 +1,21 @@
+<?php
+require_once '../../../config/db.php';
+require_once '../../../middleware/auth.php';
+$login = $_GET['login'] ?? null;
+if(!$login || empty($login)){
+    header("Location: ../homePage/homePage.php?login={$_SESSION['login']}");
+    exit();
+}
+$sql = "SELECT * FROM Commentaire WHERE login = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s",$login);
+$stmt->execute();
+$result = $stmt->get_result();
+$comments = [];
+if($result && $result->num_rows>0){
+    $comments = $result->fetch_all(MYSQLI_ASSOC);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,18 +32,16 @@
     <div id="main">
         <div id="comment">
             <h1>Commentaires:</h1>
-            <div class="commentaire">
-                <p>Comment aire 1df qgrfz gfzgrza grarga fqezfag agragar gggrfrf efzegr</p>
-                <span>18/05/2025</span> 
-            </div>
-            <div class="commentaire">
-                <p>Commentaire 2</p>
-                <span>18/05/2025</span>
-            </div>
-            <div class="commentaire">
-                <p>Commentaire 3</p>
-                <span>18/05/2025</span>
-            </div>
+            <?php if(count($comments)>0):?>
+                <?php foreach($comments as $row):?>
+                <div class="commentaire">
+                    <p><?=htmlspecialchars($row['comment'])?></p>
+                    <span><?=date("d/m/Y",strtotime($row['date']))?></span>
+                </div>
+                <?php endforeach;?>
+            <?php else:?>
+                <p>Aucun commentaire trouvé pour cet utilisateur.</p>
+            <?php endif;?>
         </div>
     </div>
 </body>

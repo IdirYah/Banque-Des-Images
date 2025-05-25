@@ -7,7 +7,7 @@ body{
     gap: 20px;
 }
 #bar{
-    width: 30%;
+    width: 25%;
 }
 #main{
     display: flex;
@@ -15,7 +15,7 @@ body{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    width: 80%;
+    width: 75%;
 }
 #comment h1{
     font-size: 50px;
@@ -60,5 +60,5 @@ body{
     }
     #main{
         width: 100%;
-    }
+    }
 }
