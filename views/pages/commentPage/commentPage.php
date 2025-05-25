@@ -3,7 +3,7 @@ require_once '../../../config/db.php';
 require_once '../../../middleware/auth.php';
 $login = $_GET['login'] ?? null;
 if(!$login || empty($login)){
-    header("Location: ../homePage/homePage.php");
+    header("Location: ../homePage/homePage.php?login={$_SESSION['login']}");
     exit();
 }
 $sql = "SELECT * FROM Commentaire WHERE login = ?";
