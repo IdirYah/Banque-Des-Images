@@ -40,6 +40,9 @@ span{
     color: #3B82F6;
     font-size: 24px;
 }
+#out{
+    cursor: pointer;
+}
 #logout{
     color: red;
 }
