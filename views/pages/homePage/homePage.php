@@ -1,3 +1,20 @@
+<?php
+require_once '../../../config/db.php';
+$login = $_GET['login'] ?? null;
+if(!$login){
+    header("Location: ../login/login.php");
+    exit();
+}
+$sql = "SELECT * FROM Image WHERE login = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s",$login);
+$stmt->execute();
+$result = $stmt->get_result();
+$images = [];
+if($result && $result->num_rows>0){
+    $images = $result->fetch_all(MYSQLI_ASSOC);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,22 +31,16 @@
     <div id="main">
         <h1>Images</h1>
         <div id="contenu">
-            <div class="card">
-                <img src="../../../assets/photo.jpeg">
-                <p>18/05/2025</p>
-            </div>
-            <div class="card">
-                <img src="../../../assets/photo.jpeg">
-                <p>18/05/2025</p>
-            </div>
-            <div class="card">
-                <img src="../../../assets/photo.jpeg">
-                <p>18/05/2025</p>
-            </div>
-            <div class="card">
-                <img src="../../../assets/photo.jpeg">
-                <p>18/05/2025</p>
-            </div>
+            <?php if(count($images)>0):?>
+                <?php foreach($images as $row):?>
+                    <div class="card" data-image="<?=htmlspecialchars($row['idImage'])?>">
+                        <img src="../../../uploads/<?=htmlspecialchars($row['lien'])?>" alt="Image">
+                        <p><?=date("d/m/Y",strtotime($row['date']))?></p>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Aucune image trouvée pour cet utilisateur.</p>
+            <?php endif;?>
         </div>
     </div>
 </body>
