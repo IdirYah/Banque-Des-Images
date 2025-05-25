@@ -6,7 +6,7 @@ $result = $conn->query($sql);
 <div id="sideBar">
     <a><div><img src="../../../assets/rechercher.png"><span> Rechercher</span></div></a>
     <a href="../../pages/ajoutImage/ajoutImage.php"><div><img src="../../../assets/ajouter.png"><span> Ajouter une image</span></div></a>
-    <div><img src="../../../assets/deconnexion.png"><span id="logout"> Déconnexion</span></div>
+    <a href="../../../controllers/logoutController.php"><div id="out"><img src="../../../assets/deconnexion.png"><span id="logout"> Déconnexion</span></div></a>
     <div id="contacts">
         <h1>Contacts</h1>
         <div id="contactsList">
@@ -14,7 +14,7 @@ $result = $conn->query($sql);
             <div class="contact" data-login="<?=htmlspecialchars($row['login'])?>">
                 <p><?=htmlspecialchars($row['prenom'])?> <?= htmlspecialchars($row['nom'])?></p>
                 <div>
-                    <a href="../../pages/homePage/homePage.php?login=<?=urlencode($row['login'])?>"><img src="../../../assets/contacts.png"></a>
+                    <a href="../../pages/homePage/homePage.php?login=<?=urlencode($row['login'])?>"><img src="../../../assets/contact.png"></a>
                     <a href="../../pages/commentPage/commentPage.php?login=<?=urlencode($row['login'])?>"><img src="../../../assets/commentaire.png"></a>
                 </div>
             </div>
