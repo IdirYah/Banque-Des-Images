@@ -34,10 +34,10 @@ if($result && $result->num_rows>0){
         <div id="contenu">
             <?php if(count($images)>0):?>
                 <?php foreach($images as $row):?>
-                    <div class="card" data-image="<?=htmlspecialchars($row['idImage'])?>">
+                    <a href="../../pages/imageDetails/imageDetails.php?id=<?=urlencode($row['idImage'])?>"><div class="card" data-image="<?=htmlspecialchars($row['idImage'])?>">
                         <img src="../../../uploads/<?=htmlspecialchars($row['lien'])?>" alt="Image">
                         <p><?=date("d/m/Y",strtotime($row['date']))?></p>
-                    </div>
+                    </div></a>
                 <?php endforeach; ?>
             <?php else: ?>
                 <p>Aucune image trouvée pour cet utilisateur.</p>
