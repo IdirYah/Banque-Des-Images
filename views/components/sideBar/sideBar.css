@@ -28,6 +28,13 @@ img{
 }
 a{
     cursor: pointer;
+    text-decoration: none;
+}
+a div{
+    text-decoration: none;
+}
+a span{
+    text-decoration: none;
 }
 span{
     color: #3B82F6;
