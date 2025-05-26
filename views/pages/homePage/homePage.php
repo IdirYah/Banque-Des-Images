@@ -30,7 +30,7 @@ if($result && $result->num_rows>0){
         <?php include_once '../../components/sideBar/sideBar.php'; ?>
     </div>
     <div id="main">
-        <h1>Images</h1>
+        <h1>Images de <?=htmlspecialchars($login)?> : </h1>
         <div id="contenu">
             <?php if(count($images)>0):?>
                 <?php foreach($images as $row):?>

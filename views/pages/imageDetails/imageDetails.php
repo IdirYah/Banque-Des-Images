@@ -6,7 +6,7 @@ if(!$id || empty($id)){
     header("Location: ../homePage/homePage.php?login={$_SESSION['login']}");
     exit();
 }
-$sql1 = "SELECT * FROM Commentaire WHERE idImage = ?";
+$sql1 = "SELECT * FROM Commentaire WHERE idImage = ? ORDER BY date DESC";
 $stmt1 = $conn->prepare($sql1);
 $stmt1->bind_param("s",$id);
 $stmt1->execute();
@@ -48,8 +48,12 @@ $image = $result2->fetch_assoc();
             <h1>Commentaires:</h1>
             <?php while($row = $result1->fetch_assoc()):?>
             <div class="commentaire">
+                <div class="cmt">
+                    <a href="../homePage/homePage.php?login=<?=urlencode($row['login'])?>"><p><?=htmlspecialchars($row['login'])?></p></a>
+                    <span><?=date("d/m/Y",strtotime($row['date']))?></span>
+                </div> 
                 <p><?=htmlspecialchars($row['comment'])?></p>
-                <span><?=date("d/m/Y",strtotime($row['date']))?></span> 
+                
             </div>
             <?php endwhile;?>
         </div>

@@ -6,7 +6,7 @@ if(!$login || empty($login)){
     header("Location: ../homePage/homePage.php?login={$_SESSION['login']}");
     exit();
 }
-$sql = "SELECT * FROM Commentaire WHERE login = ?";
+$sql = "SELECT * FROM Commentaire WHERE login = ? ORDER BY date DESC";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s",$login);
 $stmt->execute();
@@ -31,7 +31,7 @@ if($result && $result->num_rows>0){
     </div>
     <div id="main">
         <div id="comment">
-            <h1>Commentaires:</h1>
+            <h1>Commentaires de <?=htmlspecialchars($login)?> : </h1>
             <?php if(count($comments)>0):?>
                 <?php foreach($comments as $row):?>
                 <div class="commentaire">
