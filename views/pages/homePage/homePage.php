@@ -6,7 +6,7 @@ if(!$login){
     header("Location: ../login/login.php");
     exit();
 }
-$sql = "SELECT * FROM Image WHERE login = ?";
+$sql = "SELECT * FROM Image WHERE login = ? ORDER BY date DESC";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s",$login);
 $stmt->execute();
@@ -38,8 +38,8 @@ if($result && $result->num_rows>0){
                         <img src="../../../uploads/<?=htmlspecialchars($row['lien'])?>" alt="Image">
                         <p><?=date("d/m/Y",strtotime($row['date']))?></p>
                     </div></a>
-                <?php endforeach; ?>
-            <?php else: ?>
+                <?php endforeach;?>
+            <?php else:?>
                 <p>Aucune image trouvée pour cet utilisateur.</p>
             <?php endif;?>
         </div>
