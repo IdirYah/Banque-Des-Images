@@ -16,23 +16,38 @@ if(strlen($login)>10){
     header("Location: ../views/pages/register/register.php");
     exit();
 }
+if(strlen($password)<8){
+    $_SESSION['error'] = "Le mot de passe doit contenir au moins 8 caractères.";
+    header("Location: ../views/pages/register/register.php");
+    exit();
+}
 $sql = "SELECT * FROM Utilisateur WHERE login = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $login);
+$stmt->bind_param("s",$login);
 $stmt->execute();
 $result = $stmt->get_result();
-if($result->num_rows > 0){
+if($result->num_rows>0){
     $_SESSION['error'] = "Ce login existe déjà.";
     header("Location: ../views/pages/register/register.php");
     exit();
 }
 $sql = "SELECT * FROM Utilisateur WHERE email = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
+$stmt->bind_param("s",$email);
 $stmt->execute();
 $result = $stmt->get_result();
-if($result->num_rows > 0){
+if($result->num_rows>0){
     $_SESSION['error'] = "Cet email existe déjà.";
+    header("Location: ../views/pages/register/register.php");
+    exit();
+}
+$sql = "SELECT * FROM Utilisateur WHERE nom = ? AND prenom = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss",$nom,$prenom);
+$stmt->execute();
+$result = $stmt->get_result();
+if($result->num_rows>0){
+    $_SESSION['error'] = "Ces nom et prénom existent déjà.";
     header("Location: ../views/pages/register/register.php");
     exit();
 }

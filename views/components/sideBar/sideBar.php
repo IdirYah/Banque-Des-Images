@@ -4,7 +4,7 @@ $sql = "SELECT * FROM Utilisateur";
 $result = $conn->query($sql);
 ?>
 <div id="sideBar">
-    <a><div><img src="../../../assets/rechercher.png"><span> Rechercher</span></div></a>
+    <a href="../../pages/recherche/recherche.php"><div><img src="../../../assets/rechercher.png"><span> Rechercher</span></div></a>
     <a href="../../pages/ajoutImage/ajoutImage.php"><div><img src="../../../assets/ajouter.png"><span> Ajouter une image</span></div></a>
     <a href="../../../controllers/logoutController.php"><div id="out"><img src="../../../assets/deconnexion.png"><span id="logout"> Déconnexion</span></div></a>
     <div id="contacts">

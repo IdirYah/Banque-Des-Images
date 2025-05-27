@@ -54,7 +54,8 @@ body{
 }
 .commentaire{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 10px;
     width: 100%;
@@ -64,9 +65,21 @@ body{
     background-color: #f0f0f0;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
+.cmt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+.cmt>a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
 .commentaire p{
     font-size: 20px;
-    width: 80%;
+    width: 100%;
     text-align: left;
     background-color: #f0f0f0;
 }

@@ -6,7 +6,7 @@ if(!$login){
     header("Location: ../login/login.php");
     exit();
 }
-$sql = "SELECT * FROM Image WHERE login = ?";
+$sql = "SELECT * FROM Image WHERE login = ? ORDER BY date DESC";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s",$login);
 $stmt->execute();
@@ -30,7 +30,7 @@ if($result && $result->num_rows>0){
         <?php include_once '../../components/sideBar/sideBar.php'; ?>
     </div>
     <div id="main">
-        <h1>Images</h1>
+        <h1>Images de <?=htmlspecialchars($login)?> : </h1>
         <div id="contenu">
             <?php if(count($images)>0):?>
                 <?php foreach($images as $row):?>
@@ -38,8 +38,8 @@ if($result && $result->num_rows>0){
                         <img src="../../../uploads/<?=htmlspecialchars($row['lien'])?>" alt="Image">
                         <p><?=date("d/m/Y",strtotime($row['date']))?></p>
                     </div></a>
-                <?php endforeach; ?>
-            <?php else: ?>
+                <?php endforeach;?>
+            <?php else:?>
                 <p>Aucune image trouvée pour cet utilisateur.</p>
             <?php endif;?>
         </div>

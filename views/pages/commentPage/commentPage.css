@@ -18,7 +18,8 @@ body{
     width: 75%;
 }
 #comment h1{
-    font-size: 50px;
+    font-size: 24px;
+    text-align: center;
 }
 #comment{
     display: flex;
@@ -33,6 +34,7 @@ body{
 }
 .commentaire{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
@@ -53,6 +55,7 @@ body{
     color: black;
     font-size: 16px;
     background-color: #f0f0f0;
+    width: 100%;
 }
 @media (max-width:768px){
     #comment{
