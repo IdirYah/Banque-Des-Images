@@ -76,6 +76,8 @@ body{
     text-decoration: none;
     color: black;
     font-weight: bold;
+    font-size: 24px;
+    background-color: #f0f0f0;
 }
 .commentaire p{
     font-size: 20px;
